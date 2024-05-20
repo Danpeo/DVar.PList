@@ -1,4 +1,4 @@
-namespace DVar.PriceList.Domain.Enums;
+namespace DVar.PList.Domain.Enums;
 
 public enum DataType
 {

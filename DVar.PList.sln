@@ -1,8 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVar.PriceList.Api", "DVar.PriceList.Api\DVar.PriceList.Api.csproj", "{7D099D6C-B319-455F-9C77-D17E8D4B6C09}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVar.PList.Api", "DVar.PList.Api\DVar.PList.Api.csproj", "{7D099D6C-B319-455F-9C77-D17E8D4B6C09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVar.PriceList.Domain", "DVar.PriceList.Domain\DVar.PriceList.Domain.csproj", "{84E751A4-F499-421D-8A2A-0A9D055FF8A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVar.PList.Domain", "DVar.PList.Domain\DVar.PList.Domain.csproj", "{84E751A4-F499-421D-8A2A-0A9D055FF8A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVar.PList.Infrastructure", "DVar.PList.Infrastructure\DVar.PList.Infrastructure.csproj", "{CF515E9E-5E78-426F-BAB7-4CBC2A9284BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +20,9 @@ Global
 		{84E751A4-F499-421D-8A2A-0A9D055FF8A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84E751A4-F499-421D-8A2A-0A9D055FF8A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84E751A4-F499-421D-8A2A-0A9D055FF8A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF515E9E-5E78-426F-BAB7-4CBC2A9284BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF515E9E-5E78-426F-BAB7-4CBC2A9284BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF515E9E-5E78-426F-BAB7-4CBC2A9284BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF515E9E-5E78-426F-BAB7-4CBC2A9284BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
