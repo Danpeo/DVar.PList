@@ -8,17 +8,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.5" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.5"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.5">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DVar.PList.Domain\DVar.PList.Domain.csproj" />
-      <ProjectReference Include="..\DVar.PList.Infrastructure\DVar.PList.Infrastructure.csproj" />
+        <ProjectReference Include="..\DVar.PList.Domain\DVar.PList.Domain.csproj"/>
+        <ProjectReference Include="..\DVar.PList.Infrastructure\DVar.PList.Infrastructure.csproj"/>
     </ItemGroup>
 
 </Project>

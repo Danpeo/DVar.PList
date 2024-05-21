@@ -27,10 +27,7 @@ public static class PricelistEndpoints
         };
 
         pricelistRepository.Create(pricelist);
-        if (await unitOfWork.CompleteAsync())
-        {
-            return Results.Ok(pricelist.Id);
-        }
+        if (await unitOfWork.CompleteAsync()) return Results.Ok(pricelist.Id);
 
         return Results.BadRequest("Requst is bad");
     }
@@ -45,11 +42,8 @@ public static class PricelistEndpoints
             Id = p.Id,
             Name = p.Name
         }).ToList();
-        
-        if (response.Count != 0)
-        {
-            return Results.Ok(response);
-        }
+
+        if (response.Count != 0) return Results.Ok(response);
 
         return Results.NoContent();
     }

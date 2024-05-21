@@ -8,7 +8,10 @@ namespace DVar.PList.Infrastructure.RepositoryImplementations;
 
 public class PricelistRepository(AppDbContext db) : IPricelistRepository
 {
-    public void Create(Pricelist pricelist) => db.Pricelists.Add(pricelist);
+    public void Create(Pricelist pricelist)
+    {
+        db.Pricelists.Add(pricelist);
+    }
 
     public async Task<IEnumerable<Pricelist>> ListAsync(PaginationParams paginationParams)
     {

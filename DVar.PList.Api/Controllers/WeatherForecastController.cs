@@ -13,7 +13,7 @@ public class WeatherForecastController(
     IUnitOfWork unitOfWork,
     ILogger<WeatherForecastController> logger) : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
+    private static readonly string[] Summaries =
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
@@ -28,10 +28,7 @@ public class WeatherForecastController(
         };
 
         repository.Create(pricelist);
-        if (await unitOfWork.CompleteAsync())
-        {
-            return Ok(pricelist.Id);
-        }
+        if (await unitOfWork.CompleteAsync()) return Ok(pricelist.Id);
 
         return BadRequest("Requst is bad");
     }
