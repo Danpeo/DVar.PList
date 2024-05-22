@@ -16,7 +16,7 @@ public static class DependencyInjection
     )
     {
         services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("SqlServer"))
+            options.UseNpgsql(configuration.GetConnectionString("PostgresSql"))
         );
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IPricelistRepository, PricelistRepository>();
