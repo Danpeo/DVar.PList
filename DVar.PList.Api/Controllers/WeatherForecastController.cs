@@ -23,7 +23,7 @@ public class WeatherForecastController(
     {
         var pricelist = new Pricelist
         {
-            Name = request.Name,
+            PricelistName = request.Name,
             CustomColumns = request.CustomColumns
         };
 

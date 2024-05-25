@@ -9,4 +9,10 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
     public DbSet<Product> Products { get; set; }
     public DbSet<CustomColumn> CustomColumns { get; set; }
     public DbSet<ProductCustomValue> ProductCustomValues { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        
+    }
 }

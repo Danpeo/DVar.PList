@@ -1,5 +1,4 @@
-type ProductCustomValue = {
-  product: Product;
-  customColumn: CustomColumn;
+export type ProductCustomValue = {
+  customColumnId: string | undefined;
   value: string;
 };

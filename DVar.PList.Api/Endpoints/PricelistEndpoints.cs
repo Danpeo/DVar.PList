@@ -1,3 +1,4 @@
+using System.Data;
 using DVar.PList.Api.Requests.Pricelists;
 using DVar.PList.Api.Responses.Pricelists;
 using DVar.PList.Domain.Entities;
@@ -6,6 +7,7 @@ using DVar.PList.Domain.Persistence;
 using DVar.PList.Domain.RepositoryInterfaces;
 using DVar.PList.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DVar.PList.Api.Endpoints;
 
@@ -16,8 +18,9 @@ public static class PricelistEndpoints
         RouteGroupBuilder group = app.MapGroup("api/v1/PriceLists");
         group.MapPost("", CreatePricelistAsync);
         group.MapGet("", ListPricelistsAsync);
-        group.MapGet("/{id}", GetPricelistAsync);
-        group.MapPatch("/AddProduct/{id}", AddProductToPricelist);
+        group.MapGet("/{id:guid}", GetPricelistAsync);
+        group.MapGet("/Columns/{pricelistId:guid}", ListCustomColumnsAsync);
+        group.MapPatch("/AddProduct/{pricelistId}", AddProductToPricelist);
     }
 
     private static async Task<IResult> CreatePricelistAsync([FromBody] CreatePricelistRequest request,
@@ -25,7 +28,7 @@ public static class PricelistEndpoints
     {
         var pricelist = new Pricelist
         {
-            Name = request.Name,
+            PricelistName = request.Name,
             CustomColumns = request.CustomColumns,
         };
 
@@ -35,15 +38,15 @@ public static class PricelistEndpoints
         return Results.BadRequest("Requst is bad");
     }
 
-    private static async Task<IResult> ListPricelistsAsync([AsParameters] PaginationParams paginationParams,
+    private static IResult ListPricelistsAsync([AsParameters] PaginationParams paginationParams,
         IPricelistRepository pricelistRepository)
     {
-        var pricelists = await pricelistRepository.ListAsync(paginationParams);
+        var pricelists = pricelistRepository.List(paginationParams);
 
         var response = pricelists.Select(p => new ListPricelistsResponse
         {
             Id = p.Id,
-            Name = p.Name
+            Name = p.PricelistName
         }).ToList();
 
         if (response.Count != 0) return Results.Ok(response);
@@ -51,43 +54,50 @@ public static class PricelistEndpoints
         return Results.NoContent();
     }
 
-    private static async Task<IResult> GetPricelistAsync(Guid id, IPricelistRepository pricelistRepository)
+    private static async Task<IResult> GetPricelistAsync(Guid id, IPricelistRepository pricelistRepository,
+        IProductRepository productRepository)
     {
-        var pricelist = await pricelistRepository.GetAsync(id);
+        Pricelist? pricelist = await pricelistRepository.GetAsync(id);
         if (pricelist != null)
         {
-            return Results.Ok(pricelist);
+            var response = new GetPricelistResponse(pricelist.Id, pricelist.PricelistName, pricelist.CustomColumns,
+                pricelist.Products);
+
+            return Results.Ok(response);
         }
 
         return Results.NotFound();
     }
 
-    private static async Task<IResult> AddProductToPricelist(Guid id, [FromBody] Product product,
-        IPricelistRepository pricelistRepository, IUnitOfWork unitOfWork)
+    private static async Task<IResult> AddProductToPricelist(Guid pricelistId, [FromBody] Product product,
+        IPricelistRepository pricelistRepository, IProductRepository productRepository, IUnitOfWork unitOfWork)
     {
-        var pricelst = await pricelistRepository.GetAsync(id);
+        Pricelist? pricelist = await pricelistRepository.GetAsync(pricelistId);
 
-        if (pricelst != null)
+        if (pricelist != null)
         {
+            var addedProduct = productRepository.Create(product);
+            pricelist.Products.Add(addedProduct);
 
-            /*updatedPricelist.Products.Add(new()
-            {
-                Code = product.Code,
-                Name = product.Name
-            });
-            */
-
-            var products = new List<Product>
-            {
-                new()
-            };
-
-            pricelst.Products = products;
-            
             if (await unitOfWork.CompleteAsync())
-                return Results.Ok(id);
+                return Results.Ok(pricelistId);
         }
 
         return Results.BadRequest("Requst is bad");
+    }
+
+    private static async Task<IResult> ListCustomColumnsAsync(Guid pricelistId,
+        [AsParameters] PaginationParams paginationParams, IPricelistRepository pricelistRepository,
+        ICustomColumnRepository customColumnRepository)
+    {
+        Pricelist? pricelist = await pricelistRepository.GetAsync(pricelistId);
+
+        if (pricelist != null)
+        {
+            var columns = customColumnRepository.ListForPricelist(pricelist, paginationParams);
+            return Results.Ok(columns);
+        }
+
+        return Results.NotFound();
     }
 }

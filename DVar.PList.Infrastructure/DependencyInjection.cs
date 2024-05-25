@@ -16,10 +16,12 @@ public static class DependencyInjection
     )
     {
         services.AddDbContext<AppDbContext>(options =>
-            options.UseNpgsql(configuration.GetConnectionString("PostgresSql"))
+            options.UseSqlServer(configuration.GetConnectionString("SqlServer"))
         );
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IPricelistRepository, PricelistRepository>();
+        services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<ICustomColumnRepository, CustomColumnRepository>();
         return services;
     }
 }

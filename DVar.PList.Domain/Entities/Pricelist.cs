@@ -4,8 +4,7 @@ namespace DVar.PList.Domain.Entities;
 
 public class Pricelist : Entity
 {
-    public string Name { get; set; } = "";
-    public ICollection<CustomColumn> CustomColumns { get; set; } = new List<CustomColumn>();
-    public List<Product> Products { get; set; } = new List<Product>();
-    
+    public string PricelistName { get; set; } = "";
+    public List<CustomColumn> CustomColumns { get; set; } = new List<CustomColumn>();
+    public List<Product> Products { get; set; } = [];
 }

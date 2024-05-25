@@ -1,6 +1,6 @@
 type GetPricelistResponse = {
   id: string;
-  name: string;
+  pricelistName: string;
   customColumns: CustomColumn[];
   products: Product[];
 };
