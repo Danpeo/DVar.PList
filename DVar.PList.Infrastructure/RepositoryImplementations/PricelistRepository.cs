@@ -24,13 +24,5 @@ public class PricelistRepository(AppDbContext db) : IPricelistRepository
             .FirstOrDefaultAsync(p => p.Id == id);
     }
 
-    public async Task UpdateAsync(Guid id, Pricelist pricelist)
-    {
-        /*var p = await db.Pricelists.FirstOrDefaultAsync(p => p.Id == id);
-        if (p != null)
-        {
-            p.Products = pricelist.Products;
-        }*/
-        db.Pricelists.Update(pricelist);
-    }
+    
 }

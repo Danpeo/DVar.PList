@@ -7,5 +7,5 @@ public interface IProductRepository
 {
     Product Create(Product product);
     IEnumerable<Product> List(PaginationParams paginationParams);
-    Task<IEnumerable<Product>> ListProductsByPricelist(Guid pricelistId);
+    Task<Product?> GetAsync(Guid id);
 }

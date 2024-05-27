@@ -2,6 +2,8 @@ import { Fragment, useEffect, useState } from "react";
 import { listPricelists } from "../api/pricelists/pricelistApi.ts";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../components/Header.tsx";
+import {Button} from "../components/Button.tsx";
+import Pagination from "../components/Pagination.tsx";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -32,6 +34,7 @@ export const Home = () => {
   return (
     <>
       <Header>Прайсы</Header>
+      <Button type={"button"} buttonText={"Новый прайс"} onClick={() => navigate("add-pricelist")}/>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

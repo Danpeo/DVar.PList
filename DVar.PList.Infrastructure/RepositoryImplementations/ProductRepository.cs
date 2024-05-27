@@ -16,16 +16,11 @@ public class ProductRepository(AppDbContext db) : IProductRepository
         return products.Paginate(paginationParams);
     }
 
-    public async Task<IEnumerable<Product>> ListProductsByPricelist(Guid pricelistId)
+    public async Task<Product?> GetAsync(Guid id)
     {
-        /*var productIdsInPricelist = db.Pricelists
-            .Include(pl => pl.ProductIds)
-            .Where(pl => pl.Id == pricelistId)
-            .SelectMany(pl => pl.ProductIds).AsEnumerable();
-        
-        var products = await db.Products.Where(p => productIdsInPricelist.Contains(p.Id)).ToListAsync();
-
-        return products;*/
-        return default;
+        var product = await db.Products
+            .Include(p => p.ProductCustomValues)
+            .FirstOrDefaultAsync(p => p.Id == id);
+        return product;
     }
 }

@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVar.PList.Domain", "DVar.P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVar.PList.Infrastructure", "DVar.PList.Infrastructure\DVar.PList.Infrastructure.csproj", "{CF515E9E-5E78-426F-BAB7-4CBC2A9284BB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1E7F6DF0-6CEF-4FDC-B6B3-B24DFC6EA566}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVar.PList.Api.Tests", "DVar.PList.Api.Tests\DVar.PList.Api.Tests.csproj", "{C1E0BD0B-47D4-4CE3-9D9D-B74339D36765}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,12 @@ Global
 		{CF515E9E-5E78-426F-BAB7-4CBC2A9284BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF515E9E-5E78-426F-BAB7-4CBC2A9284BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF515E9E-5E78-426F-BAB7-4CBC2A9284BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1E0BD0B-47D4-4CE3-9D9D-B74339D36765}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1E0BD0B-47D4-4CE3-9D9D-B74339D36765}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1E0BD0B-47D4-4CE3-9D9D-B74339D36765}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1E0BD0B-47D4-4CE3-9D9D-B74339D36765}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C1E0BD0B-47D4-4CE3-9D9D-B74339D36765} = {1E7F6DF0-6CEF-4FDC-B6B3-B24DFC6EA566}
 	EndGlobalSection
 EndGlobal

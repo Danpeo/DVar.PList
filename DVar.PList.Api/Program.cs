@@ -1,4 +1,5 @@
 using DVar.PList.Api.Endpoints;
+using DVar.PList.Domain;
 using DVar.PList.Infrastructure;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddDomain(builder.Configuration);
 
 WebApplication app = builder.Build();
 

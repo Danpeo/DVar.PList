@@ -1,6 +1,7 @@
 import axios from "axios";
 import { serverUrl } from "../../constants/server.ts";
 import { Product } from "../../entities/product.ts";
+import { CreatePricelistRequest } from "./requests/createPricelistRequest.ts";
 
 const endpoint = "PriceLists";
 
@@ -32,17 +33,15 @@ export const addProductToPricelist = async (
   );
 };
 
-export const addProductToPricelistAlt = (
-  pricelistId: string,
-  product: Product,
-) => {
-  const url = `${serverUrl}/${endpoint}/AddProduct/${pricelistId}`;
+export const createPricelist = async (request: CreatePricelistRequest) => {
+  await axios.post(`${serverUrl}/${endpoint}/`, request);
+};
 
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(product),
-  }).then((response) => response.json());
+export const removeProductFromPricelist = async (
+  pricelistId: string,
+  productId: string,
+) => {
+  await axios.delete(
+    `${serverUrl}/${endpoint}/Products/${pricelistId}/${productId}`,
+  );
 };
